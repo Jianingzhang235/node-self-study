@@ -2,11 +2,10 @@ const Joi = require('joi');
 const express = require('express');
 const logger = require('./logger');
 const authe= require('./authentica');
-
 // var path = require('path');
 const app = express();
 app.use(express.json());
-
+app.use(express.urlencoded());
 app.use(logger);
 app.use(authe);
   
