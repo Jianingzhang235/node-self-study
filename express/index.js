@@ -52,6 +52,17 @@ function validateCourse(course) {
         name:Joi.string().min(3).required()
     };
 }
+
+app.delete('/api/courses/:id', (req, res) => {
+    const course =courses.find(c=> c.id === parseInt(req.params.id));
+    if(!course) {
+        res.status(404).send('the course with the given id was not found');
+    }
+    //delete
+    const index = courses.indexOf(course);
+    courses.splice(index,1);
+    res.send(course);
+});
  app.get('/api/courses/:id', (req, res) => {
     const course =courses.find(c=> c.id === parseInt(req.params.id));
     if(!course) {
