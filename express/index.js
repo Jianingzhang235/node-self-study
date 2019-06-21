@@ -1,11 +1,18 @@
 const Joi = require('joi');
 const express = require('express');
-var path = require('path');
-
+// var path = require('path');
 const app = express();
-
 app.use(express.json());
 
+app.use(function(req,res,next) {
+  console.log('Logging...');
+  next();
+});
+app.use(function(req,res,next) {
+    console.log('Authenticating...');
+    next();
+  });
+  
 const courses = [
     {id:1,name:'course1'},
     {id:2,name:'course2'},
