@@ -1,5 +1,6 @@
 const config = require('config');
-const dotenv = require("dotenv").config();
+
+// const dotenv = require("dotenv").config();
 
 
 const morgan = require('morgan');
