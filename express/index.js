@@ -1,14 +1,24 @@
+const config = require('config');
+const dotenv = require("dotenv").config();
+
+
 const morgan = require('morgan');
 const helmet = require('helmet');
 const Joi = require('joi');
 const express = require('express');
 const logger = require('./logger');
 const authe= require('./authentica');
+
 // var path = require('path');
 const app = express();
 
 // console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 // console.log(`app: ${app.get('env')}`);
+console.log(process.env.app_password);
+//
+console.log('Application Name: ' + config.get('name'));
+console.log('Mail Server: ' + config.get('mail.host'));
+console.log('Mail Password: ' + config.get('mail.password'));//command line should be: password=1234 NODE_ENV=production nodemon index.js
 
 
 app.use(express.json());
