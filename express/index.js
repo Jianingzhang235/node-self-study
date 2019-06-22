@@ -1,3 +1,5 @@
+const morgan = require('morgan');
+const helmet = require('helmet');
 const Joi = require('joi');
 const express = require('express');
 const logger = require('./logger');
@@ -5,9 +7,13 @@ const authe= require('./authentica');
 // var path = require('path');
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static('public'));
 app.use(logger);
 app.use(authe);
+app.use(helmet());
+app.use(morgan('tiny'));
+
   
 const courses = [
     {id:1,name:'course1'},
