@@ -15,5 +15,6 @@ dbDebugger('Connected to the database...');
  const port = process.env.PORT || 3000;
  app.listen(port, () => console.log(`Listening on port ${port}`));
  //command line:
-   //export DEBUG=APP:startup
+   //export DEBUG=app:startup, app:db;
    //nodemon index.js
+   // or: DEBUG=app:* nodemon index.js
