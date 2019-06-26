@@ -1,6 +1,9 @@
 console.log('Before');
-getUser(1, function(user) {
-    console.log('User', user);
+getUser(1, (user)=> {
+
+  getRepositories(user.gitHubUsername,(repos) => {
+    console.log('repos', repos);
+  });
 });
 console.log('After');
 // console.log(user);
@@ -16,4 +19,12 @@ function getUser(id, callback) {
         callback ({id: id, gitHubUsername: 'mosh'});
     },2000);
     
+}
+
+function getRepositories(username, callback) {
+    setTimeout(()=> {
+        console.log('calling github api...');
+        callback (['repo1','repo2','repo3']);
+
+    },2000);
 }
