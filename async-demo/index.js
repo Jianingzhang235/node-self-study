@@ -30,3 +30,11 @@ function getUser(id, callback) {
 
 //     },2000);
 // }
+
+function getCommits(repo, callback) {
+      setTimeout(()=> {
+          console.log('calling github api...');
+          callback ('commit');
+  
+      },2000);
+  }

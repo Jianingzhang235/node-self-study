@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const Joi = require('joi');
 const express = require('express');
-const logger = require('./logger');
+// const logger = require('./logger');
 const authe= require('./authentica');
 
 // var path = require('path');
@@ -19,13 +19,13 @@ console.log(process.env.app_password);
 //
 console.log('Application Name: ' + config.get('name'));
 console.log('Mail Server: ' + config.get('mail.host'));
-console.log('Mail Password: ' + config.get('mail.password'));//command line should be: password=1234 NODE_ENV=production nodemon index.js
+// console.log('Mail Password: ' + config.get('mail.password'));//command line should be: password=1234 NODE_ENV=production nodemon index.js
 
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
-app.use(logger);
+// app.use(logger);
 app.use(authe);
 if(app.get('env') === 'development') {
   app.use(morgan('tiny'));
