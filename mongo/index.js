@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true })
 const courseSchema = new mongoose.Schema({
     name: String,
     author: String,
+    price: Number,
     tags:[String],
     date: {type: Date, Default: Date.now()},
     isPublished: Boolean
@@ -23,6 +24,7 @@ async function creatCourse(){
     name: 'node',
     author: 'Jianing',
     tags:['node', 'backend'],
+    price: 10,
     date: Date.now(),
     isPublished: true
 });
@@ -30,10 +32,24 @@ const result = await course.save();
 console.log(result);
 
 }
+// creatCourse();
 
 async function getCourses() {
+    //Comparison Query Operators
+
+    //eq (equal)
+    //ne (not equal)
+    //gt (greater than)
+    //gte (greater than or equal to)
+    //lt (less than)
+    //lte (less than or equal to)
+    //in
+    //nin (not in)
   const courses = await Course
-    .find({author: 'Jianing', isPublished: true})
+    // .find({author: 'Jianing', isPublished: true})
+    // .find({price: 10})
+    // .find({price: {$gte: 10, $lse: 20}})
+    .find({price: {$in: [10,15,20]}})
     .limit(10)
     .sort({date: -1})
     .select({name: 2, tags: 2});
