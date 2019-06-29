@@ -51,7 +51,7 @@ async function getCourses() {
  //Regular Expressions
    //  
   const courses = await Course
-    // .find({author: 'Jianing', isPublished: true})
+    .find({author: 'Jianing', isPublished: true})
     // .find({price: 10})
     // .find({price: {$gte: 10, $lse: 20}})
     // .find({price: {$in: [10,15,20]}})
@@ -63,10 +63,10 @@ async function getCourses() {
     //End with Jianing
     // .find({author: /jianing$/i})
     // Contains Jianing
-.find({author: /.*Jianing.*/i})
+    // .find({author: /.*Jianing.*/i})
     .limit(10)
     .sort({date: -1})
-    .select({name: 2, tags: 2});
+    .count();
   console.log(courses);
 }
 getCourses();
