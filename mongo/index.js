@@ -58,8 +58,10 @@ async function getCourses() {
     // .find()
     // // .or([{author: 'Jianing', isPublished: true}])
     // .and([{author: 'Jianing', isPublished: true}])
-    // starts with Mosh
-    .find({author: /^Jianing/})
+    // starts with Jianing
+    // .find({author: /^Jianing/})
+    //End with Jianing
+    .find({author: /jianing$/i})
     .limit(10)
     .sort({date: -1})
     .select({name: 2, tags: 2});
