@@ -30,6 +30,8 @@ async function notifyCustomer() {
   
 }
 notifyCustomer();
+
+
 function getCustomer(id) {
   return new Promise((resolve, reject)=>{
     setTimeout(() => {
