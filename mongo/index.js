@@ -33,7 +33,10 @@ console.log(result);
 
 async function getCourses() {
   const courses = await Course
-  .find({author: 'Jianing', isPublished: true});
+    .find({author: 'Jianing', isPublished: true})
+    .limit(10)
+    .sort({date: -1})
+    .select({name: 2, tags: 2});
   console.log(courses);
 }
 getCourses();
