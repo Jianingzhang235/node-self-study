@@ -61,7 +61,9 @@ async function getCourses() {
     // starts with Jianing
     // .find({author: /^Jianing/})
     //End with Jianing
-    .find({author: /jianing$/i})
+    // .find({author: /jianing$/i})
+    // Contains Jianing
+.find({author: /.*Jianing.*/i})
     .limit(10)
     .sort({date: -1})
     .select({name: 2, tags: 2});
