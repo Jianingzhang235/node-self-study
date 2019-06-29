@@ -48,14 +48,18 @@ async function getCourses() {
  //Logical Query Operators
    //or
    //and
+ //Regular Expressions
+   //  
   const courses = await Course
     // .find({author: 'Jianing', isPublished: true})
     // .find({price: 10})
     // .find({price: {$gte: 10, $lse: 20}})
     // .find({price: {$in: [10,15,20]}})
-    .find()
-    // .or([{author: 'Jianing', isPublished: true}])
-    .and([{author: 'Jianing', isPublished: true}])
+    // .find()
+    // // .or([{author: 'Jianing', isPublished: true}])
+    // .and([{author: 'Jianing', isPublished: true}])
+    // starts with Mosh
+    .find({author: /^Jianing/})
     .limit(10)
     .sort({date: -1})
     .select({name: 2, tags: 2});
