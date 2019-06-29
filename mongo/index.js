@@ -45,11 +45,17 @@ async function getCourses() {
     //lte (less than or equal to)
     //in
     //nin (not in)
+ //Logical Query Operators
+   //or
+   //and
   const courses = await Course
     // .find({author: 'Jianing', isPublished: true})
     // .find({price: 10})
     // .find({price: {$gte: 10, $lse: 20}})
-    .find({price: {$in: [10,15,20]}})
+    // .find({price: {$in: [10,15,20]}})
+    .find()
+    // .or([{author: 'Jianing', isPublished: true}])
+    .and([{author: 'Jianing', isPublished: true}])
     .limit(10)
     .sort({date: -1})
     .select({name: 2, tags: 2});
