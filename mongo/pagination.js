@@ -7,10 +7,10 @@ mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true })
 const courseSchema = new mongoose.Schema({
     name: String,
     author: String,
-    price: Number,
-    tags:[String],
+    tags: [String],
     date: {type: Date, Default: Date.now()},
-    isPublished: Boolean
+    isPublished: Boolean,
+    price: Number,
 });
 
 const Course = mongoose.model('Course', courseSchema);
@@ -21,7 +21,6 @@ async function creatCourse(){
     author: 'Jianing',
     tags:['node', 'backend'],
     price: 10,
-    date: Date.now(),
     isPublished: true
 });
 const result = await course.save();
