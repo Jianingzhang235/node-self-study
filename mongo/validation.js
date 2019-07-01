@@ -5,29 +5,48 @@ mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true })
 
 
 const courseSchema = new mongoose.Schema({
-    name: {type: String, required: true},
-    author: String,
+    name: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 255
+        // match: /pattern/
+    },
+    category: {
+       type: String,
+       required: true,
+       enum: ['web', 'mobile', 'network']
+    },
+    author: {
+        type: String,
+        required: true
+     },
     tags: [String],
     date: {type: Date, Default: Date.now()},
     isPublished: Boolean,
-    price: Number,
+    price: {
+        type: Number,
+        required: function() {return this.isPublished; },
+        min: 10,
+        max: 200
+    },
 });
 
 const Course = mongoose.model('Course', courseSchema);
 
 async function creatCourse(){
   const course = new Course({
-    // name: 'node',
+    name: 'nodemon',
     author: 'Jianing',
+    category: '-',
     tags:['node', 'backend'],
     isPublished: true,
     price: 10
   });
 
   try {
-      await course.validate();
-    // const result = await course.save();
-    // console.log(result);  
+    const result = await course.save();
+    console.log(result);  
   }
   catch(ex){
       console.log(ex.message);
