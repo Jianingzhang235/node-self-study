@@ -20,23 +20,23 @@ const courseSchema = new mongoose.Schema({
     author: {type: String, required: true},
     tags: {
         type: Array,
-        validate: function(v) {
-          return new Promise(function(resolve, reject) {
-            setTimeout(function() {
-              resolve(false);
-            }, 1000);
-          });
-        }
-      //   validate: {
-      //       isAsync: true,
-      //     validator: async function(v, callback) {
-      //         setTimeout(() => {
-      //           const result = v && v.length > 0;
-      //           callback(result);
-      //         }, 1000);   
-      //   },
-      //   message: 'A course should have at least one tag.'
-      // }
+        // validate: function(v) {
+        //   return new Promise(function(resolve, reject) {
+        //     setTimeout(function() {
+        //       resolve(false);
+        //     }, 1000);
+        //   });
+        // }
+        validate: {
+            isAsync: true,
+          validator: async function(v, callback) {
+              setTimeout(() => {
+                const result = v && v.length > 0;
+                callback(result);
+              }, 1000);   
+        },
+        message: 'A course should have at least one tag.'
+      }
     },
     date: {type: Date, Default: Date.now()},
     isPublished: Boolean,
