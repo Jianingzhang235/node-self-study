@@ -20,8 +20,8 @@ async function creatCourse(){
     name: 'node',
     author: 'Jianing',
     tags:['node', 'backend'],
-    price: 10,
-    isPublished: true
+    isPublished: true,
+    price: 10
 });
 const result = await course.save();
 console.log(result);

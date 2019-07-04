@@ -15,28 +15,31 @@ const courseSchema = new mongoose.Schema({
     category: {
        type: String,
        required: true,
-       enum: ['web', 'mobile', 'network']
+       enum: ['web', 'mobile', 'network'],
+       lowercase: true,
+      // uppercase: true
+      trim: true
     },
     author: {type: String, required: true},
     tags: {
         type: Array,
-        validate: function(v) {
-          return new Promise(function(resolve, reject) {
-            setTimeout(function() {
-              resolve(false);
-            }, 1000);
-          });
-        }
-      //   validate: {
-      //       isAsync: true,
-      //     validator: async function(v, callback) {
-      //         setTimeout(() => {
-      //           const result = v && v.length > 0;
-      //           callback(result);
-      //         }, 1000);   
-      //   },
-      //   message: 'A course should have at least one tag.'
-      // }
+        // validate: function(v) {
+        //   return new Promise(function(resolve, reject) {
+        //     setTimeout(function() {
+        //       resolve(false);
+        //     }, 1000);
+        //   });
+        // }
+        validate: {
+            isAsync: true,
+          validator: async function(v, callback) {
+              setTimeout(() => {
+                const result = v && v.length > 0;
+                callback(result);
+              }, 1000);   
+        },
+        message: 'A course should have at least one tag.'
+      }
     },
     date: {type: Date, Default: Date.now()},
     isPublished: Boolean,
@@ -44,7 +47,9 @@ const courseSchema = new mongoose.Schema({
         type: Number,
         required: function() {return this.isPublished; },
         min: 10,
-        max: 200
+        max: 200,
+        get: v => Math.round(v),
+        set: v => Math.round(v),
     },
 });
 
@@ -54,10 +59,10 @@ async function creatCourse(){
   const course = new Course({
     name: 'nodemon',
     author: 'Jianing',
-    category: '-',
-    tags:[],
+    category: 'Web',
+    tags:['frontend'],
     isPublished: true,
-    price: 10
+    price: 10.55
   });
 
   try {
