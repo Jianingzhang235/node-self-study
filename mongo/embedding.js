@@ -32,9 +32,12 @@ async function listCourses() {
   console.log(courses);
 }
 async function updateAuthor(courseId) {
-  const course = await Course.findById(courseId);
-  course.author.name = "Mosh Hamedani";
-  course.save();
+  const course = await Course.update({_id: courseId}, {
+    $set: {
+      'author.name': 'John Smith'
+    }
+  });
+
 }
 updateAuthor('5d1eebac69b9a909b841053d');
 // console.log(courses)
