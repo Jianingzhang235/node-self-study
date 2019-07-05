@@ -43,9 +43,12 @@ async function addAuthor(courseId, author) {
   course.authors.push(author);
   course.save();
 }
-// async function removeAuthor(courseId, author) {
-//     const course = await Course.findById(courseId);
-//     course.authors.splice(author, 1);
-// }
 
-addAuthor('5d1f240ef492f20a66ffead6', new Author ({name: 'Jianing'}));
+async function removeAuthor(courseId, authorId) {
+    const course = await Course.findById(courseId);
+    const author = course.authors.id(authorId);
+    author.remove();
+    course.save();
+}
+
+removeAuthor('5d1f240ef492f20a66ffead6', '5d1f240ef492f20a66ffead4');
