@@ -31,15 +31,21 @@ async function listCourses() {
   const courses = await Course.find();
   console.log(courses);
 }
-async function updateAuthor(courseId) {
-  const course = await Course.update({_id: courseId}, {
-    $set: {
-      'author.name': 'John Smith'
-    }
-  });
+// async function updateAuthor(courseId) {
+//   const course = await Course.update({_id: courseId}, {
+//     $set: {
+//       'author.name': 'John Smith'
+//     }
+//   });
+// }
+async function addAuthor(courseId, author) {
+  const course = await Course.findById(courseId);
+  course.authors.push(author);
+  course.save();
 }
-// updateAuthor('5d1eebac69b9a909b841053d');
-createCourse('Node Course', [
-  new Author({ name: 'Mosh' }),
-  new Author({name: 'John'})
-]);
+// async function removeAuthor(courseId, author) {
+//     const course = await Course.findById(courseId);
+//     course.authors.splice(author, 1);
+// }
+
+addAuthor('5d1f240ef492f20a66ffead6', new Author ({name: 'Jianing'}));
