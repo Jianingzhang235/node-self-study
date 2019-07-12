@@ -35,6 +35,7 @@
   "devDependencies": {
     "eslint": "^6.0.1",
     "eslint-plugin-json": "^1.4.0",
+    "jest": "^24.8.0",
     "jshint": "^2.10.2"
   },
   "scripts": {
