@@ -38,6 +38,9 @@
     "jest": "^24.8.0",
     "jshint": "^2.10.2"
   },
+    "jest": {
+    "verbose": true
+  },
   "scripts": {
     "test": "jest --watchAll"
   },
